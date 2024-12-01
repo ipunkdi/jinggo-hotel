@@ -17,8 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/cek1', function () {
-    return '<h1>cek1</h1>';
-})->middleware(['auth', 'verified']);
+Route::get('generalmanager', function () {
+    return '<h1>hello general manager</h1>';
+})->middleware(['auth', 'verified', 'role:general manager']);
+
+Route::get('frontdesk', function () {
+    return '<h1>hello front desk</h1>';
+})->middleware(['auth', 'verified', 'role:front desk|general manager']);
 
 require __DIR__.'/auth.php';
