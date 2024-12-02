@@ -22,7 +22,7 @@ Route::get('generalmanager', function () {
 })->middleware(['auth', 'verified', 'role:general manager']);
 
 Route::get('frontdesk', function () {
-    return '<h1>hello front desk</h1>';
+    return view('frontdesk');
 })->middleware(['auth', 'verified', 'role:front desk|general manager']);
 
 require __DIR__.'/auth.php';
