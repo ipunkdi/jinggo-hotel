@@ -28,13 +28,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->hasRole('general manager')) {
-            return redirect()->to('generalmanager');
-        }
+        // if (Auth::user()->hasRole('general manager')) {
+        //     return redirect()->to('generalmanager');
+        // }
 
-        if (Auth::user()->hasRole('front desk')) {
-            return redirect()->to('frontdesk');
-        }
+        // if (Auth::user()->hasRole('front desk')) {
+        //     return redirect()->to('frontdesk');
+        // }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

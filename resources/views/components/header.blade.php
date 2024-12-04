@@ -214,30 +214,23 @@
         <div class="py-3 px-4">
             <span
             class="block text-sm font-semibold text-gray-900 dark:text-white"
-            >Neil Sims</span
             >
+            {{ auth()->user()->name }}
+            </span>
             <span
             class="block text-sm text-gray-900 truncate dark:text-white"
-            >name@flowbite.com</span
             >
+            {{ auth()->user()->email }}
+            </span>
         </div>
         <ul
             class="py-1 text-gray-700 dark:text-gray-300"
             aria-labelledby="dropdown"
         >
             <li>
-            <a
-                href="#"
-                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                >My profile</a
-            >
-            </li>
-            <li>
-            <a
-                href="#"
-                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                >Account settings</a
-            >
+                <x-dropdown-link :href="route('profile.edit')">
+                    {{ __('Profile') }}
+                </x-dropdown-link>
             </li>
         </ul>
         
@@ -246,11 +239,15 @@
             aria-labelledby="dropdown"
         >
             <li>
-            <a
-                href="#"
-                class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Sign out</a
-            >
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-dropdown-link>
+                </form>
             </li>
         </ul>
         </div>
