@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('general_manager.users.index', ['title' => 'User management', 'users' => User::with('roles')->get()]);
+        return view('general-manager.users.index', ['title' => 'User management', 'users' => User::with('roles')->get()]);
     }
 
     /**
@@ -32,7 +32,7 @@ class UserController extends Controller
                 array_push($role,$role1);
             }
         }
-        return view('general_manager.users.create', ['title' => 'Create User', 'roles' => $role]);
+        return view('general-manager.users.create', ['title' => 'Create User', 'roles' => $role]);
     }
 
     /**
