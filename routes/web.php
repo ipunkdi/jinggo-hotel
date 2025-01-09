@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RatePlanController;
 use App\Http\Controllers\UnitGroupController;
 
 Route::get('/', function () {
@@ -29,6 +31,8 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // Room
     Route::resource('/room/unit-groups', UnitGroupController::class);
+    Route::resource('/room/units', UnitController::class);
+    Route::get('/rate-plans/{unitGroupId}', [UnitController::class, 'getRatePlansByRoomType']);
 });
 
 
@@ -42,6 +46,9 @@ Route::middleware('auth', 'verified')->group(function () {
 // Housekeeper
 
 // Sales & Marketing Manager
+Route::middleware('auth', 'verified')->group( function() {
+    Route::resource('/sales/rate-plans', RatePlanController::class);
+});
 
 
 

@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Unit;
+use App\Models\RatePlan;
+use App\Models\Inventory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class UnitGroup extends Model
 {
@@ -20,23 +24,18 @@ class UnitGroup extends Model
         });
     }
 
-    // public function units(): HasMany
-    // {
-    //     return $this->hasMany(Unit::class);
-    // }
+    public function units(): HasMany
+    {
+        return $this->hasMany(Unit::class);
+    }
 
-    // public function inventory(): HasMany
-    // {
-    //     return $this->HasMany(Inventory::class);
-    // }
-
-    // public function ratePlan(): BelongsTo
-    // {
-    //     return $this->belongsTo(RatePlan::class);
-    // }
+    public function inventory(): HasMany
+    {
+        return $this->HasMany(Inventory::class);
+    }
     
-    // public function ratePlans(): HasMany
-    // {
-    //     return $this->hasMany(RatePlan::class); // Jika RatePlan berhubungan dengan UnitGroup
-    // }
+    public function ratePlans(): HasMany
+    {
+        return $this->hasMany(RatePlan::class);
+    }
 }
