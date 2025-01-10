@@ -14,14 +14,10 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v5m-3 0h6M4 11h16M5 15h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1Z"/>
                     </svg>
                     <span class="ml-3">Dashboard</span>
-                    @if (auth()->user()->hasRole('general manager'))
-                    <span class="ml-3">General Manager</span>
-                    @elseif (auth()->user()->hasRole('front desk'))
-                    <span class="ml-3">Front Desk</span>
-                    @endif
                 </a>
             </li>
 
+            @if (auth()->user()->hasRole('general manager'))
             <li>
                 <button
                     type="button"
@@ -66,8 +62,9 @@
                     </li>
                 </ul>
                 </li>
-
-                <li>
+            @endif
+            
+                {{-- <li>
                     <a
                         href="/guests"
                         class="flex items-center p-2 text-base font-medium {{ request()->is('guests*') ? 'bg-amber-500 text-white hover:bg-amber-500 hover:text-white' : 'text-gray-900 hover:bg-gray-100'}} rounded-lg dark:text-white dark:hover:bg-gray-700 group"
@@ -77,7 +74,7 @@
                         </svg>
                             <span class="ml-3">Guests</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li>
                     <a
@@ -193,6 +190,7 @@
                     </ul>
                 </li>
         </ul>
+        @if (auth()->user()->hasRole('general manager'))
         <ul
             class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700"
         >
@@ -208,5 +206,6 @@
             </a>
             </li>
         </ul>
+        @endif
     </div>
 </aside>

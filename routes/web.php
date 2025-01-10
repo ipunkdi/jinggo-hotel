@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatePlanController;
 use App\Http\Controllers\UnitGroupController;
+use App\Http\Controllers\HousekeepingController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -26,7 +27,7 @@ Route::get('/Account/ConfirmEmail/{remember_token}/{email}', [UserController::cl
 Route::post('updatePass/{token}/{email}', [UserController::class, 'updatePass'])->name('set-pass');
 
 // General Manager
-Route::middleware('auth', 'verified')->group(function () {
+Route::middleware('auth', 'verified', 'role:general manager')->group(function () {
     Route::resource('/general-manager/users', UserController::class);
 
     // Room
@@ -35,15 +36,21 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/rate-plans/{unitGroupId}', [UnitController::class, 'getRatePlansByRoomType']);
 });
 
-
-
 // Administration & Finance Manager
+
 
 // Room Division Manager
 
 // Front Desk
 
 // Housekeeper
+Route::middleware('auth', 'verified')->group( function() {
+    Route::get('/housekeeping', [HousekeepingController::class, 'index'])->name('housekeeping.index');
+    Route::post('/housekeeping/update-status/{id}', [HousekeepingController::class, 'updateStatus'])->name('housekeeping.updateStatus');
+    Route::get('/housekeeping/units', [HousekeepingController::class, 'getUnitData'])->name('housekeeping.getUnitData');
+    Route::get('/housekeeping/unit-groups', [HousekeepingController::class, 'getUnitGroup'])->name('housekeeping.getUnitGroup');
+    Route::get('/housekeeping/search', [HousekeepingController::class, 'searchData'])->name('housekeeping.searchData');
+});
 
 // Sales & Marketing Manager
 Route::middleware('auth', 'verified')->group( function() {
