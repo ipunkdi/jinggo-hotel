@@ -31,7 +31,7 @@
     <h3 class="text-3xl font-bold dark:text-white px-4 lg:px-12">Detail Reservation</h3>
 
     <!-- Modal -->
-    <div id="paymentModal" class="fixed inset-0 z-10 overflow-y-auto bg-transparent bg-opacity-75 flex items-center justify-center">
+    <div id="paymentModal" class="fixed inset-0 z-10 overflow-y-auto bg-transparent bg-opacity-75 flex items-center  justify-center hidden">
         <!-- Background overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
